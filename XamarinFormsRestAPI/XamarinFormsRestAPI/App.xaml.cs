@@ -16,9 +16,13 @@ namespace XamarinFormsRestAPI
             MainPage = new XamarinFormsRestAPI.MainPage();
         }
 
-        protected override void OnStart()
+        protected override async void OnStart()
         {
-            // Handle when your app starts
+            var client = new Services.RestClient();
+
+            var json = client.Serialize();
+
+            await MainPage.DisplayAlert("Json: ", json, "Cancel");
         }
 
         protected override void OnSleep()
