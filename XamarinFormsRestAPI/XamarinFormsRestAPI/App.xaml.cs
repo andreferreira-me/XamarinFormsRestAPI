@@ -9,20 +9,20 @@ namespace XamarinFormsRestAPI
 {
     public partial class App : Application
     {
+        private MainPage _mainpage;
+
         public App()
         {
+            _mainpage = new XamarinFormsRestAPI.MainPage();
+
             InitializeComponent();
 
-            MainPage = new XamarinFormsRestAPI.MainPage();
+            MainPage = _mainpage;
         }
 
-        protected override async void OnStart()
+        protected override void OnStart()
         {
-            var client = new Services.RestClient();
-
-            var json = client.Serialize();
-
-            await MainPage.DisplayAlert("Json: ", json, "Cancel");
+            _mainpage.Load();
         }
 
         protected override void OnSleep()
